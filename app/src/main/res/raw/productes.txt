@@ -1,0 +1,77 @@
+1;Té Dharamsala;Bebidas;18.00;39
+2;Cerveza tibetana Barley;Bebidas;19.00;17
+3;Sirope de regaliz;Condimentos;10.00;13
+4;Especias Cajun del chef Anton;Condimentos;22.00;53
+5;Mezcla Gumbo del chef Anton;Condimentos;21.35;0
+6;Mermelada de grosellas de la abuela;Condimentos;25.00;120
+7;Peras secas orgánicas del tío Bob;Frutas/Verduras;30.00;15
+8;Salsa de arándanos Northwoods;Condimentos;40.00;6
+9;Buey Mishi Kobe;Carnes;97.00;29
+10;Pez espada;Pescado/Marisco;31.00;31
+11;Queso Cabrales;Lácteos;21.00;22
+12;Queso Manchego La Pastora;Lácteos;38.00;86
+13;Algas Konbu;Pescado/Marisco;6.00;24
+14;Cuajada de judías;Frutas/Verduras;23.25;35
+15;Salsa de soja baja en sodio;Condimentos;15.50;39
+16;Postre de merengue Pavlova;Repostería;17.45;29
+17;Cordero Alice Springs;Carnes;39.00;0
+18;Langostinos tigre Carnarvon;Pescado/Marisco;62.50;42
+19;Pastas de té de chocolate;Repostería;9.20;25
+20;Mermelada de Sir Rodney's;Repostería;81.00;40
+21;Bollos de Sir Rodney's;Repostería;10.00;3
+22;Pan de centeno crujiente estilo Gustaf's;Granos/Cereales;21.00;104
+23;Pan fino;Granos/Cereales;9.00;61
+24;Refresco Guaraná Fantástica;Bebidas;4.50;20
+25;Crema de chocolate y nueces NuNuCa;Repostería;14.00;76
+26;Ositos de goma Gumbär;Repostería;31.23;15
+27;Chocolate Schoggi;Repostería;43.90;49
+28;Col fermentada Rössle;Frutas/Verduras;45.60;26
+29;Salchicha Thüringer;Carnes;123.79;0
+30;Arenque blanco del noroeste;Pescado/Marisco;25.89;10
+31;Queso gorgonzola Telino;Lácteos;12.50;0
+32;Queso Mascarpone Fabioli;Lácteos;32.00;9
+33;Queso de cabra;Lácteos;2.50;112
+34;Cerveza Sasquatch;Bebidas;14.00;111
+35;Cerveza negra Steeleye;Bebidas;18.00;20
+36;Escabeche de arenque;Pescado/Marisco;19.00;112
+37;Salmón ahumado Gravad;Pescado/Marisco;26.00;11
+38;Vino Côte de Blaye;Bebidas;263.50;17
+39;Licor verde Chartreuse;Bebidas;18.00;69
+40;Carne de cangrejo de Boston;Pescado/Marisco;18.40;123
+41;Crema de almejas estilo Nueva Inglaterra;Pescado/Marisco;9.65;85
+42;Tallarines de Singapur;Granos/Cereales;14.00;26
+43;Café de Malasia;Bebidas;46.00;17
+44;Azúcar negra Malacca;Condimentos;19.45;27
+45;Arenque ahumado;Pescado/Marisco;9.50;5
+46;Arenque salado;Pescado/Marisco;12.00;95
+47;Galletas Zaanse;Repostería;9.50;36
+48;Chocolate holandés;Repostería;12.75;15
+49;Regaliz;Repostería;20.00;10
+50;Chocolate blanco;Repostería;16.25;65
+51;Manzanas secas Manjimup;Frutas/Verduras;53.00;20
+52;Cereales para Filo;Granos/Cereales;7.00;38
+53;Empanada de carne;Carnes;32.80;0
+54;Empanada de cerdo;Carnes;7.45;21
+55;Paté chino;Carnes;24.00;115
+56;Gnocchi de la abuela Alicia;Granos/Cereales;38.00;21
+57;Raviolis Angelo;Granos/Cereales;19.50;36
+58;Caracoles de Borgoña;Pescado/Marisco;13.25;62
+59;Raclet de queso Courdavault;Lácteos;55.00;79
+60;Camembert Pierrot;Lácteos;34.00;19
+61;Sirope de arce;Condimentos;28.50;113
+62;Tarta de azúcar;Repostería;49.30;17
+63;Sandwich de vegetales;Condimentos;43.90;24
+64;Bollos de pan de Wimmer;Granos/Cereales;33.25;22
+65;Salsa de pimiento picante de Luisiana;Condimentos;21.05;76
+66;Especias picantes de Luisiana;Condimentos;17.00;4
+67;Cerveza Laughing Lumberjack;Bebidas;14.00;52
+68;Barras de pan de Escocia;Repostería;12.50;6
+69;Queso Gudbrandsdals;Lácteos;36.00;26
+70;Cerveza Outback;Bebidas;15.00;15
+71;Crema de queso Fløtemys;Lácteos;21.50;26
+72;Queso Mozzarella Giovanni;Lácteos;34.80;14
+73;Caviar rojo;Pescado/Marisco;15.00;101
+74;Queso de soja Longlife;Frutas/Verduras;10.00;4
+75;Cerveza Klosterbier Rhönbräu;Bebidas;7.75;125
+76;Licor Cloudberry;Bebidas;18.00;57
+77;Salsa verde original Frankfurter;Condimentos;13.00;32

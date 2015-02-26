@@ -68,21 +68,25 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
+                    android:id="@+id/etNom"
                     android:hint="@string/tvHint"/>
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
+                    android:id="@+id/etCategoria"
                     android:hint="@string/tvHint"/>
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
+                    android:id="@+id/etPreu"
                     android:hint="@string/tvHint"/>
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
+                    android:id="@+id/etUnitats"
                     android:hint="@string/tvHint"/>
         </LinearLayout>
    </LinearLayout>
