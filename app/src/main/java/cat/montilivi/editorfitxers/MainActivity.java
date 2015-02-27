@@ -1,5 +1,6 @@
 package cat.montilivi.editorfitxers;
 
+import android.app.AlertDialog;
 import android.os.Environment;
 import android.support.annotation.NonNull;
 import android.support.v7.app.ActionBarActivity;
@@ -30,8 +31,7 @@ import java.util.ListIterator;
 public class MainActivity extends ActionBarActivity implements View.OnClickListener{
 
     final String NOM_FITXER = "productes.txt";
-    Button btnRead;
-    Button btnAdd;
+    Button btnLlegeix;
     Button btnSave;
     EditText etNom;
     EditText etCategoria;
@@ -41,32 +41,43 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
     RadioButton rbExterna;
     RadioButton rbRecursos;
     NumberPicker npLinea;
-
+    ArrayList<String[]> liniaAL = new ArrayList<String[]>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        btnRead = (Button) findViewById(R.id.btnLlegeix);
+        btnLlegeix = (Button) findViewById(R.id.btnLlegeix);
         btnSave = (Button) findViewById(R.id.btnSave);
-        btnAdd = (Button) findViewById(R.id.btnAfageix);
-        etNom  = (EditText) findViewById(R.id.etNom);
+        etNom = (EditText) findViewById(R.id.etNom);
         etCategoria = (EditText) findViewById(R.id.etCategoria);
-        etPreu  = (EditText) findViewById(R.id.etPreu);
-        etUnits  = (EditText) findViewById(R.id.etUnitats);
+        etPreu = (EditText) findViewById(R.id.etPreu);
+        etUnits = (EditText) findViewById(R.id.etUnitats);
         rbExterna = (RadioButton) findViewById(R.id.rbExterna);
         rbInterna = (RadioButton) findViewById(R.id.rbInterna);
         rbRecursos = (RadioButton) findViewById(R.id.rbRecursos);
         npLinea = (NumberPicker) findViewById(R.id.npNLineaText);
-    }
 
+        npLinea.setMaxValue(77);
+        npLinea.setMinValue(1);
+        btnLlegeix.setOnClickListener(this);
+        npLinea.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
+            @Override
+            public void onValueChange(NumberPicker numberPicker, int i, int i2) {
+                Mostrar(numberPicker.getValue());
+                npLinea.setValue(i2);
+            }
+        });
+    }
     @Override
     public void onClick(View v) {
+
         switch (v.getId())
         {
             case R.id.btnLlegeix:
             {
                 LlegeixFitxer();
+                Mostrar(1);
                 break;
             }
             case R.id.btnSave:
@@ -74,20 +85,8 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
                 SaveFitxer();
                 break;
             }
-            case R.id.btnAfageix:
-            {
-                AfageixFitxer();
-                break;
-            }
         }
-
     }
-
-    private void AfageixFitxer()
-    {
-
-    }
-
     private void SaveFitxer()
     {
 
@@ -96,20 +95,18 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
     private void LlegeixFitxer()
     {
         try {
-
-
             if(rbRecursos.isChecked())
             {
                 InputStream isr = getResources().openRawResource(R.raw.productes);
                 InputStreamReader is = new InputStreamReader(isr);
                 BufferedReader br = new BufferedReader(is);
-                ArrayList<String[]> liniaAL = new ArrayList<String[]>();
                 String linia = "";
                 while ((linia = br.readLine())!= null)
                 {
                     liniaAL.add(linia.split(";"));
                 }
                 br.close();
+
             }
             else if(rbExterna.isChecked())
             {
@@ -117,18 +114,23 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
                 if (storageState.equals(Environment.MEDIA_MOUNTED)) {
                     File file = Environment.getExternalStoragePublicDirectory(NOM_FITXER);
                     FileInputStream fos2 = new FileInputStream(file);
-
                     fos2.close();
                 }
-
             }
             else
             {}
-  }
+        }
         catch (Exception e)
         {
             Log.e("Fitxers:", "Error de fitxer");
         }
-
+    }
+    public  void Mostrar(int fila)
+    {
+        //npLinea.setValue(Integer.parseInt(liniaAL.get(fila)[0]));
+        etNom.setText(liniaAL.get(fila-1)[1]);
+        etCategoria.setText(liniaAL.get(fila-1)[2]);
+        etPreu.setText(liniaAL.get(fila-1)[3]);
+        etUnits.setText(liniaAL.get(fila-1)[4]);
     }
 }

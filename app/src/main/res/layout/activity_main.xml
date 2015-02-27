@@ -13,12 +13,6 @@
         android:textSize="20dp"
         android:text="@string/btnRead"
         android:id="@+id/btnLlegeix"/>
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="20dp"
-        android:text="@string/btnOpen"
-        android:id="@+id/btnAfageix"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -32,19 +26,19 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:text="Recursos"
-            android:textSize="20dp"
+            android:textSize="19dp"
             android:id="@+id/rbRecursos"/>
         <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:text="Interna"
-            android:textSize="20dp"
+            android:textSize="19dp"
             android:id="@+id/rbInterna"/>
         <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:text="Externa"
-            android:textSize="20dp"
+            android:textSize="19dp"
             android:id="@+id/rbExterna"/>
         </RadioGroup>
     </LinearLayout>
@@ -58,12 +52,16 @@
            android:layout_height="wrap_content"
            android:id="@+id/npNLineaText"
            android:layout_marginTop="50dp"
-           android:layout_marginBottom="50dp"></NumberPicker>
+           android:layout_marginBottom="50dp"
+           android:layout_marginRight="5dp"
+           android:clickable="true"
+           android:background="#ffeaff88"></NumberPicker>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
-                android:background="#ffffeacc">
+                android:background="#ffffeacc"
+                android:clickable="false">
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
