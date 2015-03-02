@@ -1,4 +1,4 @@
-1;Té Dharamsala;Bebidas;18.00;39
+1;Rec Té Dharamsala;Bebidas;18.00;39
 2;Cerveza tibetana Barley;Bebidas;19.00;17
 3;Sirope de regaliz;Condimentos;10.00;13
 4;Especias Cajun del chef Anton;Condimentos;22.00;53
