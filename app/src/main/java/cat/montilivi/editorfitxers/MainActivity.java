@@ -2,6 +2,7 @@ package cat.montilivi.editorfitxers;
 
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Environment;
 import android.support.annotation.NonNull;
@@ -99,25 +100,50 @@ public class MainActivity extends ActionBarActivity{
         try {
             if (rbExterna.isChecked()) {
                 if (isExternalStorageReadable()) {
-                    Integer linia = 0;
-                    File file = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS), NOM_FITXER);
-                    FileOutputStream fisr = new FileOutputStream(file);
-                    OutputStreamWriter is = new OutputStreamWriter(fisr);
-                    BufferedWriter br = new BufferedWriter(is);
-                    while (linia<77) {
-                        br.write(liniaAL.get(linia)[0]+";"+liniaAL.get(linia)[1]+";"+liniaAL.get(linia)[2]+";"+liniaAL.get(linia)[3]+";"+liniaAL.get(linia)[4]+"\n");
-                        linia++;
+
+                    // Accedim a la targeta de memòria externa
+                    boolean disponible = false;
+                    boolean escrivible = false;
+
+                    String estat = Environment.getExternalStorageState();
+
+                    if(estat.equals(Environment.MEDIA_MOUNTED)) // Comprovem que la targeta està muntada
+                    {
+                        disponible = true;
+                        escrivible = true;
                     }
-                    br.close();
-                    file.createNewFile();
+                    else if (estat.equals(Environment.MEDIA_MOUNTED_READ_ONLY)) // Comprobem si podem escriure
+                    {
+                        disponible = true;
+                        escrivible = false;
+                    }
+
+                    if(disponible && escrivible)
+                    {
+                        //File ruta_sd = Environment.getExternalStorageDirectory();  //Obtenim l'arrel de la SD
+                        File ruta_sd = Environment.getExternalStorageDirectory();
+                        File f = new File(ruta_sd.getAbsolutePath(),NOM_FITXER);
+
+                        OutputStreamWriter ow = new OutputStreamWriter(new FileOutputStream(f));
+                        BufferedWriter bw = new BufferedWriter(ow);
+
+                        Integer linia = 0;
+
+
+
+                        while (linia<77) {
+                            bw.write(liniaAL.get(linia)[0]+";"+liniaAL.get(linia)[1]+";"+liniaAL.get(linia)[2]+";"+liniaAL.get(linia)[3]+";"+liniaAL.get(linia)[4]+"\n");
+                            linia++;
+                        }
+                        bw.close();
+                        //f.createNewFile();
+                        Log.e("Fitxers:", "Fitxer guardat a Externa");
+                    }
                 }
             }
             else if (rbInterna.isChecked())
             {
-                String yourFilePath = context.getFilesDir() + "/" + NOM_FITXER;
-                File fileInterna = new File( yourFilePath );
-                FileOutputStream fisr = new FileOutputStream(fileInterna);
-                OutputStreamWriter is = new OutputStreamWriter(fisr);
+                OutputStreamWriter is = new OutputStreamWriter(openFileOutput(NOM_FITXER,Context.MODE_PRIVATE));
                 BufferedWriter br = new BufferedWriter(is);
                 Integer linia = 0;
                 while (linia <77) {
@@ -125,10 +151,22 @@ public class MainActivity extends ActionBarActivity{
                     linia++;
                 }
                 br.close();
-                fileInterna.createNewFile();
+                Log.e("Fitxers","Guardat a interna");
+            }
+            else
+            {
+                AlertDialog.Builder dlgAlert  = new AlertDialog.Builder(this);
+                dlgAlert.setMessage("No es pot guardar en els recursos");
+                dlgAlert.setTitle("Error");
+                dlgAlert.setPositiveButton("OK",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                //dismiss the dialog
+                            }
+                        });
             }
         } catch (Exception e) {
-            Log.e("Fitxers:", "Error de fitxer");
+            Log.e("Fitxers:", "Error al guardar el fitxer");
         }
     }
 
@@ -143,30 +181,34 @@ public class MainActivity extends ActionBarActivity{
                     liniaAL.add(linia.split(";"));
                 }
                 br.close();
-            } else if (rbExterna.isChecked()) {
+            }
+            else if (rbExterna.isChecked()) {
                 if (isExternalStorageReadable()) {
                     String linia = "";
-                    File file = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS), NOM_FITXER);
-                    FileInputStream fisr = new FileInputStream(file);
+                    File rutaSD = Environment.getExternalStorageDirectory();
+                    File fitxerSD = new File(rutaSD.getAbsolutePath(),NOM_FITXER);
+                    FileInputStream fisr = new FileInputStream(fitxerSD);
                     InputStreamReader is = new InputStreamReader(fisr);
                     BufferedReader br = new BufferedReader(is);
                     while ((linia = br.readLine()) != null) {
                         liniaAL.add(linia.split(";"));
                     }
+                    br.close();
+                    Log.e("FITXERS:","LLegit d'externa?");
                 }
             }
             else if (rbInterna.isChecked())
             {
-                String yourFilePath = context.getFilesDir() + "/" + NOM_FITXER;
-                File fileInterna = new File( yourFilePath );
-                FileInputStream fis = new FileInputStream(fileInterna);
-                InputStreamReader isr = new InputStreamReader(fis);
+                InputStreamReader isr = new InputStreamReader(openFileInput(NOM_FITXER));
                 BufferedReader br = new BufferedReader(isr);
                 String linia = "";
                 while ((linia = br.readLine()) != null) {
                     liniaAL.add(linia.split(";"));
                 }
+                br.close();
+                Log.e("Fitxers","Guardat a interna");
             }
+
         } catch (Exception e) {
             Log.e("Fitxers:", "Error de fitxer");
         }
