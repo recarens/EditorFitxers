@@ -27,7 +27,8 @@
             android:layout_height="match_parent"
             android:text="Recursos"
             android:textSize="19dp"
-            android:id="@+id/rbRecursos"/>
+            android:id="@+id/rbRecursos"
+            android:checked="true" />
         <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="match_parent"

@@ -42,6 +42,7 @@ import java.util.ListIterator;
 public class MainActivity extends ActionBarActivity{
 
     final String NOM_FITXER = "productes.txt";
+    final int NUMERO_FILES = 77;
     Button btnLlegeix;
     Button btnSave;
     EditText etNom;
@@ -52,6 +53,7 @@ public class MainActivity extends ActionBarActivity{
     RadioButton rbExterna;
     RadioButton rbRecursos;
     NumberPicker npLinea;
+
     ArrayList<String[]> liniaAL = new ArrayList<String[]>();
     private Context context;
 
@@ -71,11 +73,12 @@ public class MainActivity extends ActionBarActivity{
         rbRecursos = (RadioButton) findViewById(R.id.rbRecursos);
         npLinea = (NumberPicker) findViewById(R.id.npNLineaText);
 
-        npLinea.setMaxValue(77);
+        npLinea.setMaxValue(NUMERO_FILES);
         npLinea.setMinValue(1);
-
         btnLlegeix.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                npLinea.setValue(1);
+                liniaAL.clear();
                 LlegeixFitxer();
                 Mostrar(1);
             }
@@ -139,7 +142,7 @@ public class MainActivity extends ActionBarActivity{
 
                         liniaAL.set(npLinea.getValue()-1, dadesProducte);
 
-                        while (linia<77) {
+                        while (linia<NUMERO_FILES) {
 
                             if(linia == (npLinea.getValue()-1))
                             {
@@ -152,6 +155,7 @@ public class MainActivity extends ActionBarActivity{
                             linia++;
                         }
                         bw.close();
+                        ow.close();
                         //f.createNewFile();
                         Log.e("Fitxers:", "Fitxer guardat a Externa");
                     }
@@ -160,13 +164,31 @@ public class MainActivity extends ActionBarActivity{
             else if (rbInterna.isChecked())
             {
                 OutputStreamWriter is = new OutputStreamWriter(openFileOutput(NOM_FITXER,Context.MODE_PRIVATE));
-                BufferedWriter br = new BufferedWriter(is);
+                BufferedWriter bw = new BufferedWriter(is);
                 Integer linia = 0;
-                while (linia <77) {
-                    br.write(liniaAL.get(linia)[0] + ";" + liniaAL.get(linia)[1] + ";" + liniaAL.get(linia)[2] + ";" + liniaAL.get(linia)[3] + ";" + liniaAL.get(linia)[4] + "\n");
+                String[] dadesProducte = new String[4];
+                dadesProducte[0] = etNom.getText().toString();
+                dadesProducte[1] = etCategoria.getText().toString();
+                dadesProducte[2] = etPreu.getText().toString();
+                dadesProducte[3] = etUnits.getText().toString();
+
+                Log.e("NUM PICKER: ", ""+npLinea.getValue());
+
+                liniaAL.set(npLinea.getValue()-1, dadesProducte);
+
+                while (linia <NUMERO_FILES) {
+                    if(linia == (npLinea.getValue()-1))
+                    {
+                        bw.write(linia+";"+etNom.getText().toString()+";"+etCategoria.getText().toString()+";"+etPreu.getText().toString()+";"+etUnits.getText().toString()+"\n");
+                    }
+                    else
+                    {
+                        bw.write(liniaAL.get(linia)[0]+";"+liniaAL.get(linia)[1]+";"+liniaAL.get(linia)[2]+";"+liniaAL.get(linia)[3]+";"+liniaAL.get(linia)[4]+"\n");
+                    }
                     linia++;
                 }
-                br.close();
+                bw.close();
+                is.close();
                 Log.e("Fitxers","Guardat a interna");
             }
             else
@@ -199,6 +221,7 @@ public class MainActivity extends ActionBarActivity{
                     liniaAL.add(linia.split(";"));
                 }
                 br.close();
+                isr.close();
             }
             else if (rbExterna.isChecked()) {
                 if (isExternalStorageReadable()) {
@@ -212,6 +235,7 @@ public class MainActivity extends ActionBarActivity{
                         liniaAL.add(linia.split(";"));
                     }
                     br.close();
+                    fisr.close();
                     Log.e("FITXERS:","LLegit d'externa?");
                 }
             }
@@ -224,6 +248,7 @@ public class MainActivity extends ActionBarActivity{
                     liniaAL.add(linia.split(";"));
                 }
                 br.close();
+                isr.close();
                 Log.e("Fitxers","Guardat a interna");
             }
 
