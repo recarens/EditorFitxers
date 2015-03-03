@@ -129,10 +129,26 @@ public class MainActivity extends ActionBarActivity{
 
                         Integer linia = 0;
 
+                        String[] dadesProducte = new String[4];
+                        dadesProducte[0] = etNom.getText().toString();
+                        dadesProducte[1] = etCategoria.getText().toString();
+                        dadesProducte[2] = etPreu.getText().toString();
+                        dadesProducte[3] = etUnits.getText().toString();
 
+                        Log.e("NUM PICKER: ", ""+npLinea.getValue());
+
+                        liniaAL.set(npLinea.getValue()-1, dadesProducte);
 
                         while (linia<77) {
-                            bw.write(liniaAL.get(linia)[0]+";"+liniaAL.get(linia)[1]+";"+liniaAL.get(linia)[2]+";"+liniaAL.get(linia)[3]+";"+liniaAL.get(linia)[4]+"\n");
+
+                            if(linia == (npLinea.getValue()-1))
+                            {
+                                bw.write(linia+";"+etNom.getText().toString()+";"+etCategoria.getText().toString()+";"+etPreu.getText().toString()+";"+etUnits.getText().toString()+"\n");
+                            }
+                            else
+                            {
+                                bw.write(liniaAL.get(linia)[0]+";"+liniaAL.get(linia)[1]+";"+liniaAL.get(linia)[2]+";"+liniaAL.get(linia)[3]+";"+liniaAL.get(linia)[4]+"\n");
+                            }
                             linia++;
                         }
                         bw.close();
@@ -165,6 +181,8 @@ public class MainActivity extends ActionBarActivity{
                             }
                         });
             }
+
+
         } catch (Exception e) {
             Log.e("Fitxers:", "Error al guardar el fitxer");
         }
